@@ -99,7 +99,7 @@ var SERVER={
 
 var	dataRefresh = +new Date;	//初始时间,用于刷新数据
 var game = new GAME({'N':9});
-var SERVERROOt = "D:\\dz\\http";
+var SERVERROOt = require('path').join(__dirname, '../http/');
 
 http.createServer(function (req, resp){
 	var repeat=0;

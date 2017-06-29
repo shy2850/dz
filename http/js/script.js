@@ -4,7 +4,7 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 ;(function($) {
-	var root = "http://172.18.24.79:8973";
+	var root = location.href.match(/(http:\/\/[^\/]+)/)[1] + ":8973";
 	var time = 0;
 	var id=getUrlParam('id')||'',pd=getUrlParam('pd')||'';
 

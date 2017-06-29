@@ -22,7 +22,7 @@
 	        	<label alt='请输入姓名全拼' placeholder='姓名全拼 :'></label>
 	        </div>
 	        <div class="login-form-group">
-	        	<input required='' type='password' value="" id="password">
+	        	<input required='' type='password' value="123" id="password">
 	        	<label alt='请输入密码' placeholder='密码 :'></label>
 	    	</div>
 	    	<a href="javascript:void(0);" id="loginBtn" class="login-form-btn">进入游戏</a>
@@ -42,7 +42,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
 <script type="text/javascript">
-	var root = "http://172.18.24.79:8973";
+	var root = location.href.match(/(http:\/\/[^\/]+)/)[1] + ":8973";
 	$('#loginBtn').click(function(){
 		var id=$('#loginId').val();
 		var password=hex_md5($('#password').val());
