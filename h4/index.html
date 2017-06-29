@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>dz</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="login-pop">
+	<div id="mouseAnimation" style="position:absolute;top:50%;left:50%;margin-top:-380px;margin-left:-310px;overflow:hidden;">
+		<canvas id="mouseAnimation-canvas"></canvas>
+	</div>
+	<div class="login-wrapper">
+		<div class="login-logo">
+			<h1>德州<span>扑克</span></h1>
+		</div>
+		<div class="login-form clearfix">
+			<div class="login-form-group">
+	        	<input required='' type='text' value="" id="loginId">
+	        	<label alt='请输入姓名全拼' placeholder='姓名全拼 :'></label>
+	        </div>
+	        <div class="login-form-group">
+	        	<input required='' type='password' value="" id="password">
+	        	<label alt='请输入密码' placeholder='密码 :'></label>
+	    	</div>
+	    	<a href="javascript:void(0);" id="loginBtn" class="login-form-btn">进入游戏</a>
+		</div>
+		<div class="login-info">
+			<p>By 张博 , version 1.0</p>
+		</div>
+	</div>
+</div>
+		
+<!-- canvas -->
+	<script src="js/a/TweenLite.min.js"></script>
+	<script src="js/a/EasePack.min.js"></script>
+	<script src="js/a/c.js"></script>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">
+	var root = "http://172.18.24.79:8973";
+	$('#loginBtn').click(function(){
+		var id=$('#loginId').val();
+		var password=hex_md5($('#password').val());
+		console.log(id,password);
+		var info = {
+			id: id,
+			password:password,
+			method:"login"
+		};
+		$.ajax({
+			url:root,
+			dataType:"jsonp",
+			data:{
+				id:id,
+				password:password,
+				method:'login'
+			},
+			success:function(d){
+				if(d.success){
+					window.location.href='game.html?id='+id+'&pd='+password;
+				}else{
+					alert(d.msg);
+				}
+			}
+		});
+
+	});
+	$(document).keydown(function(event){ 
+		if(event.keyCode == 13){ 
+			$('#loginBtn').click();
+		}
+	}); 
+	
+</script>
+</body>
+</html>
